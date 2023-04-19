@@ -1,5 +1,5 @@
 const Token = require("../../../entities/token")
-const exception = require("../../../entities/exception")
+const ErrorHandling = require("../error_handling/error_handling")
 
 class LexicalAnalysis{
     constructor(expression)
@@ -15,8 +15,6 @@ class LexicalAnalysis{
 
         const filteredWords = cleanedWords.filter(word => word !== '');
 
-        let word_token = []
-
         return filteredWords;
     }
     run()
@@ -26,33 +24,10 @@ class LexicalAnalysis{
         word.forEach(item => {
             word_token_list.push(new Token(item))
           });
-        
 
-        for (let i = 0; i < word_token_list.length; i++) {
-            const excpt = new exception()
-            if(word_token_list[i].token_specify['type'] == 'keyword' && !word_token_list[i+1])
-            {
-                excpt.syntax_error()
-            }
-            if(!word_token_list[i+1])
-            {
-                return
-            }
-            if(word_token_list[i].token_specify['type'] == 'identifier' && word_token_list[i+1].token_specify['type'] == 'identifier')
-            {
-                excpt.syntax_error()
-            }
-            if(word_token_list[i].token_specify['type'] == 'identifier' && word_token_list[i+1].token_specify['type'] == 'keyword')
-            {
-                const excpt = new exception()
-                excpt.reserved_keyword()
-            }
-
-          }
+        new ErrorHandling(word_token_list)
     }
 }
 
-
-// teste
-lexical = new LexicalAnalysis("x n")
+lexical = new LexicalAnalysis("let x = 30")
 lexical.run()
