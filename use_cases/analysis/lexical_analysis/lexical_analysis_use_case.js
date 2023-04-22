@@ -1,5 +1,5 @@
 const Token = require("../../../entities/token")
-const exception = require("../../../entities/exception")
+const ErrorHandling = require("../error_handling/error_handling")
 
 class LexicalAnalysis{
     constructor(expression)
