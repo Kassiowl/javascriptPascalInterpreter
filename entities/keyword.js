@@ -7,7 +7,7 @@ module.exports = class KeyWords{
             'float', 'for', 'goto', 'if', 'int', 'long',
             'register', 'return', 'short', 'signed', 'sizeof', 'static',
             'struct', 'switch', 'typedef', 'union', 'unsigned', 'void',
-            'volatile', 'while'
+            'volatile', 'while', 'class'
           ];
           
         return keywords
