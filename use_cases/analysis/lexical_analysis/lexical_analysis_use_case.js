@@ -7,13 +7,11 @@ class LexicalAnalysis {
   }
 
   separateWords() {
-    // Separate words on whitespace, parentheses, braces, quotes, and semicolons
+
     const words = this.expression.split(/([\s(){}\[\]'"`’‘“”‘’;.])/);
   
-    // Remove empty and whitespace-only words
     const filteredWords = words.filter(word => !word.match(/^\s*$/));
   
-    // Separate semicolons at the end of a word
     const semicolonSeparatedWords = [];
     filteredWords.forEach((word, index) => {
       const lastChar = word.slice(-1);
@@ -24,7 +22,6 @@ class LexicalAnalysis {
       }
     });
   
-    // Separate semicolons at the start of a word
     const finalWords = [];
     semicolonSeparatedWords.forEach(word => {
       if (word.charAt(0) === ';') {
