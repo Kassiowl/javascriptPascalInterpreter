@@ -2,12 +2,13 @@ module.exports = class KeyWords{
     static get keywords_static_list()
     {
         const keywords = [
-            'auto', 'break', 'case', 'char', 'const', 'continue',
-            'default', 'do', 'double', 'else', 'enum', 'extern',
-            'float', 'for', 'goto', 'if', 'int', 'long',
-            'register', 'return', 'short', 'signed', 'sizeof', 'static',
-            'struct', 'switch', 'typedef', 'union', 'unsigned', 'void',
-            'volatile', 'while', 'class'
+            'and', 'array', 'begin', 'case', 'const',
+            'div', 'do', 'downto', 'else', 'end',
+            'file', 'for', 'function', 'goto', 'if',
+            'in', 'label', 'mod', 'nil', 'not',
+            'of', 'or', 'packed', 'procedure', 'program',
+            'record', 'repeat', 'set', 'then', 'to',
+            'type', 'until', 'var', 'while', 'with0'
           ];
           
         return keywords

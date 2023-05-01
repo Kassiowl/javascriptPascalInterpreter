@@ -1,7 +1,6 @@
 const keyword_list = require('./keyword')
 const operators = require('./operators')
 const utilities = require('./utilities')
-const parentheses_brackets = require('./parentheses_brackets')
 
 module.exports = class Token {
     constructor(token_data) {
@@ -28,15 +27,6 @@ module.exports = class Token {
           return
         }
       }
-            
-      for(const element of parentheses_brackets.parentheses_brackets_static_list)
-      {
-        if(element === token_data){
-          this.token_specify = {'type': 'parentheses_brackets', 'data': token_data}
-          return
-        }
-      }
-            
   
       this.token_specify = { 'type': 'identifier', 'data': token_data };
     }

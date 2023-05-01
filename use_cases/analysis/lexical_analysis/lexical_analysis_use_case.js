@@ -7,13 +7,13 @@ class LexicalAnalysis {
   }
 
   separateWords() {
- 
-    const words = this.expression.split(/([^a-zA-Z0-9])/);
 
-    const filteredWords = words.filter(word => word !== '');
+  let noSpaces = this.expression.replace(/\s/g, "");
+  let words = noSpaces.split(/[^a-zA-Z0-9]+/);
+  words = words.filter(word => word !== "");
 
-    return filteredWords;
-  }
+  return words;
+}
 
   run() {
     let words = this.separateWords();
@@ -26,5 +26,5 @@ class LexicalAnalysis {
   }
 }
 
-let lexical = new LexicalAnalysis("const X = 20 // {10}");
+let lexical = new LexicalAnalysis("program Hello;begin writeln ('Hello, world.');end.");
 console.log(lexical.run());
