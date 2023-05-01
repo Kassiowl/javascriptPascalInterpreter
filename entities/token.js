@@ -1,7 +1,7 @@
 const keyword_list = require('./keyword')
 const operators = require('./operators')
 const utilities = require('./utilities')
-
+const literals = require('./string_literal')
 module.exports = class Token {
     constructor(token_data) {
       this.token_data = token_data;
@@ -24,6 +24,14 @@ module.exports = class Token {
       {
         if(element === token_data){
           this.token_specify = {'type': 'utilities', 'data': token_data}
+          return
+        }
+      }
+
+      for(const element of literals.string_literals_static_list)
+      {
+        if(element === token_data){
+          this.token_specify = {'type': 'string literal', 'data': token_data}
           return
         }
       }
