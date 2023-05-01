@@ -6,10 +6,50 @@ class LexicalAnalysis {
   }
 
   separateWords() {
-    const words = this.expression.split(/([^a-zA-Z0-9\s])/);
-    const filteredWords = words.filter(word => word !== '' && !word.match(/^\s+$/));
-    return filteredWords;
+    const symbols = ["(", ")", "{", "}", "'", '"', ";"];
+    let currentWord = "";
+    let wordList = [];
+  
+    for (let i = 0; i < this.expression.length; i++) {
+      let currentChar = this.expression[i];
+  
+      if (symbols.includes(currentChar)) {
+        if (currentWord !== "") {
+          wordList.push(currentWord);
+          currentWord = "";
+        }
+        wordList.push(currentChar);
+      } else if (currentChar === " ") {
+        if (currentWord !== "") {
+          wordList.push(currentWord);
+          currentWord = "";
+        }
+      } else {
+        currentWord += currentChar;
+      }
+    }
+  
+    if (currentWord !== "") {
+      wordList.push(currentWord);
+    }
+  
+    let finalWordList = [];
+    for (let i = 0; i < wordList.length; i++) {
+      let currentWord = wordList[i];
+      if (currentWord[currentWord.length - 1] === ";") {
+        finalWordList.push(currentWord.slice(0, -1));
+        finalWordList.push(";");
+      } else if (currentWord[0] === ";") {
+        finalWordList.push(";");
+        finalWordList.push(currentWord.slice(1));
+      } else {
+        finalWordList.push(currentWord);
+      }
+    }
+  
+    return finalWordList;
   }
+  
   run() {
     let words = this.separateWords();
     let word_token_list = [];
