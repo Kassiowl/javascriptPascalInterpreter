@@ -1,4 +1,5 @@
 const Token = require("../../../entities/token")
+const ErrorHandling = require("../error_handling/error_handling")
 
 class LexicalAnalysis {
   constructor(expression) {
@@ -6,50 +7,35 @@ class LexicalAnalysis {
   }
 
   separateWords() {
-    const symbols = ["(", ")", "{", "}", "'", '"', ";"];
-    let currentWord = "";
-    let wordList = [];
+    // Separate words on whitespace, parentheses, braces, quotes, and semicolons
+    const words = this.expression.split(/([\s(){}\[\]'"`’‘“”‘’;.])/);
   
-    for (let i = 0; i < this.expression.length; i++) {
-      let currentChar = this.expression[i];
+    // Remove empty and whitespace-only words
+    const filteredWords = words.filter(word => !word.match(/^\s*$/));
   
-      if (symbols.includes(currentChar)) {
-        if (currentWord !== "") {
-          wordList.push(currentWord);
-          currentWord = "";
-        }
-        wordList.push(currentChar);
-      } else if (currentChar === " ") {
-        if (currentWord !== "") {
-          wordList.push(currentWord);
-          currentWord = "";
-        }
+    // Separate semicolons at the end of a word
+    const semicolonSeparatedWords = [];
+    filteredWords.forEach((word, index) => {
+      const lastChar = word.slice(-1);
+      if (lastChar === ';') {
+        semicolonSeparatedWords.push(word.slice(0, -1), ';');
       } else {
-        currentWord += currentChar;
+        semicolonSeparatedWords.push(word);
       }
-    }
+    });
   
-    if (currentWord !== "") {
-      wordList.push(currentWord);
-    }
-  
-    let finalWordList = [];
-    for (let i = 0; i < wordList.length; i++) {
-      let currentWord = wordList[i];
-      if (currentWord[currentWord.length - 1] === ";") {
-        finalWordList.push(currentWord.slice(0, -1));
-        finalWordList.push(";");
-      } else if (currentWord[0] === ";") {
-        finalWordList.push(";");
-        finalWordList.push(currentWord.slice(1));
+    // Separate semicolons at the start of a word
+    const finalWords = [];
+    semicolonSeparatedWords.forEach(word => {
+      if (word.charAt(0) === ';') {
+        finalWords.push(';', word.slice(1));
       } else {
-        finalWordList.push(currentWord);
+        finalWords.push(word);
       }
-    }
+    });
   
-    return finalWordList;
+    return finalWords;
   }
-  
   run() {
     let words = this.separateWords();
     let word_token_list = [];
@@ -61,5 +47,5 @@ class LexicalAnalysis {
   }
 }
 
-let lexical = new LexicalAnalysis("program Hello; begin writeln ('Hello, world.');end.");
+let lexical = new LexicalAnalysis("begin writeln('Hello, World!'); readkey;end.");
 console.log(lexical.run());
