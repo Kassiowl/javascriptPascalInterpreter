@@ -7,9 +7,10 @@ class LexicalAnalysis {
 
     separateTokens(expression) {
     expression = this.expression.trim();
-    const tokenRegex = /(\d+)|([a-zA-Z]\w*)|([\+\-\*\/\(\)])/g;
+    const tokenRegex = /(\d+)|([a-zA-Z]\w*)|([\+\-\*\/\(\)])|('(?:\\.|[^'])*')/g;
     let tokens = expression.match(tokenRegex);
-  
+    console.log("tokens__")
+    console.log(tokens)
     return tokens;
   }
   
@@ -24,5 +25,5 @@ class LexicalAnalysis {
   }
 }
 
-let lexical = new LexicalAnalysis("begin writeln('Hello, World!'); readkey;end.");
+let lexical = new LexicalAnalysis("begin writeln('Hello, World!');");
 console.log(lexical.run());
