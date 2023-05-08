@@ -30,12 +30,13 @@ module.exports = class Token {
 
       for(const element of literals.string_literals_static_list)
       {
-        if(element === token_data){
+        if(element.includes('"') || element.includes("'")){
           this.token_specify = {'type': 'string literal', 'data': token_data}
           return
         }
       }
   
+
       this.token_specify = { 'type': 'identifier', 'data': token_data };
     }
   }
