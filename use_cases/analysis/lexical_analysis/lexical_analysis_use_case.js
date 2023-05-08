@@ -1,46 +1,26 @@
 const Token = require("../../../entities/token")
-const ErrorHandling = require("../error_handling/error_handling")
 
 class LexicalAnalysis {
   constructor(expression) {
     this.expression = expression;
   }
 
-  separateWords() {
-
-    const words = this.expression.split(/([\s(){}\[\]'"`’‘“”‘’;.])/);
+    separateTokens(expression) {
+    expression = this.expression.trim();
+    const tokenRegex = /(\d+)|([a-zA-Z]\w*)|([\+\-\*\/\(\)])/g;
+    let tokens = expression.match(tokenRegex);
   
-    const filteredWords = words.filter(word => !word.match(/^\s*$/));
-  
-    const semicolonSeparatedWords = [];
-    filteredWords.forEach((word, index) => {
-      const lastChar = word.slice(-1);
-      if (lastChar === ';') {
-        semicolonSeparatedWords.push(word.slice(0, -1), ';');
-      } else {
-        semicolonSeparatedWords.push(word);
-      }
-    });
-  
-    const finalWords = [];
-    semicolonSeparatedWords.forEach(word => {
-      if (word.charAt(0) === ';') {
-        finalWords.push(';', word.slice(1));
-      } else {
-        finalWords.push(word);
-      }
-    });
-  
-    return finalWords;
+    return tokens;
   }
+  
   run() {
-    let words = this.separateWords();
-    let word_token_list = [];
-    words.forEach(item => {
-      word_token_list.push(new Token(item));
+    let token_list = this.separateTokens();
+    let def_token_list = [];
+    token_list.forEach(item => {
+      def_token_list.push(new Token(item));
     });
 
-    return word_token_list;
+    return def_token_list;
   }
 }
 
