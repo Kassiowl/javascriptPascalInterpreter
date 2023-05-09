@@ -28,13 +28,15 @@ module.exports = class Token {
         }
       }
 
-      for(const element of literals.string_literals_static_list)
-      {
-        if(element.includes('"') || element.includes("'")){
+
+        
+      
+      
+        if(token_data.includes('"') || token_data.includes("'") && (token_data[token_data.length - 1] == "'" || token_data[token_data.length -1] == '"')){
           this.token_specify = {'type': 'string literal', 'data': token_data}
           return
         }
-      }
+      
   
 
       this.token_specify = { 'type': 'identifier', 'data': token_data };
