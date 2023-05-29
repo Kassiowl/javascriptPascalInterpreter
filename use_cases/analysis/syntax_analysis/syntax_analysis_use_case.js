@@ -11,8 +11,8 @@ class SyntaxAnalysis {
       exception_list.syntax_error();
     }
   }
-
   verifyRule(token1, token2, token3 = undefined, token4 = undefined, token5 = undefined, token6 = undefined) {
+    console.log("entrou")
     if (token1.token_data === "if" && token2.token_data === "then") {
       return true;
     }
@@ -59,9 +59,20 @@ class SyntaxAnalysis {
     if (token1.token_data === "array" && token2.token_specify === "identifier" && token3.token_data === "[") {
       return true;
     }
+  
+    if (token1.token_specify === 'keyword' && token2.token_specify === 'identifier') {
+      return true;
+    }
+  
+    if (token1.token_data === "writeln" && token2.token_data === "(" && token3.token_specify === "string literal" && token4.token_data === ")") {
+      return true;
+    }
+  
+   
+
     exception_list.syntax_error();
   }
-
+  
   syntax_analysis() {
     for (let i = 0; i < this.tokens.length - 5; i++) {
         const token1 = this.tokens[i];
@@ -77,7 +88,7 @@ class SyntaxAnalysis {
   }
 }
 
-let lexical = new LexicalAnalysis("begin writeln('Hello, World!');");
+let lexical = new LexicalAnalysis("program HelloWorld;begin writeln('Hello, World!');end.");
 tokens = lexical.run()
 console.log("tokens ___")
 console.log(tokens)
