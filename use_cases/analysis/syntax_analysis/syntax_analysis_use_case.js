@@ -12,7 +12,7 @@ class SyntaxAnalysis {
     }
   }
   verifyRule(token1, token2, token3 = undefined, token4 = undefined, token5 = undefined, token6 = undefined) {
-    console.log("entrou")
+  
     if (token1.token_data === "if" && token2.token_data === "then") {
       return true;
     }
@@ -84,11 +84,6 @@ class SyntaxAnalysis {
       return true;  
     } 
     
-  
-   
-   
-
-
     exception_list.syntax_error();
   }
   
