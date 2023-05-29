@@ -24,15 +24,15 @@ class SyntaxAnalysis {
     if (
       token1.token_data === "for" &&
       token2.token_data === ":=" &&
-      token3.token_type === "identifier" &&
+      token3.token_specify === "identifier" &&
       token4.token_data === "to" &&
-      token5.token_type === "number" &&
+      token5.token_specify === "number" &&
       token6.token_data === "do"
     ) {
       return true;
     }
   
-    if (token1.token_data === "var" && token2.token_type === "identifier" && token3.token_data === ":") {
+    if (token1.token_data === "var" && token2.token_specify === "identifier" && token3.token_data === ":") {
       return true;
     }
   
@@ -44,19 +44,19 @@ class SyntaxAnalysis {
       return true;
     }
   
-    if (token1.token_data === "procedure" && token2.token_type === "identifier" && token3.token_data === ";") {
+    if (token1.token_data === "procedure" && token2.token_specify === "identifier" && token3.token_data === ";") {
       return true;
     }
   
-    if (token1.token_data === "function" && token2.token_type === "identifier" && token3.token_data === ":") {
+    if (token1.token_data === "function" && token2.token_specify === "identifier" && token3.token_data === ":") {
       return true;
     }
   
-    if (token1.token_data === "const" && token2.token_type === "identifier" && token3.token_data === "=") {
+    if (token1.token_data === "const" && token2.token_specify === "identifier" && token3.token_data === "=") {
       return true;
     }
   
-    if (token1.token_data === "array" && token2.token_type === "identifier" && token3.token_data === "[") {
+    if (token1.token_data === "array" && token2.token_specify === "identifier" && token3.token_data === "[") {
       return true;
     }
     exception_list.syntax_error();

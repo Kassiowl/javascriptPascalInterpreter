@@ -9,14 +9,14 @@ module.exports = class Token {
 
       for (const element of keyword_list.keywords_static_list) {
         if (element === token_data) {
-          this.token_specify = { 'type': 'keyword', 'data': token_data };
+          this.token_specify = 'keyword'
           return;
         }
       }
       for(const element of operators.operators_static_list)
       {
         if(element === token_data){
-          this.token_specify = {'type': 'operator', 'data': token_data}
+          this.token_specify = 'operator'
           return
         }
       }
@@ -24,7 +24,7 @@ module.exports = class Token {
       for(const element of comments.comments_static_list)
       {
         if(element === token_data){
-          this.token_specify = {'type': 'comments', 'data': token_data}
+          this.token_specify = 'comments'
           return
         }
       }
@@ -32,7 +32,7 @@ module.exports = class Token {
       for(const element of delimiters.delimiters_static_list)
       {
         if(element === token_data){
-          this.token_specify = {'type': 'delimiters', 'data': token_data}
+          this.token_specify = 'delimiters'
           return
         }
       }
@@ -40,11 +40,11 @@ module.exports = class Token {
 
       
         if(token_data.includes('"') || token_data.includes("'") && (token_data[token_data.length - 1] == "'" || token_data[token_data.length -1] == '"')){
-          this.token_specify = {'type': 'string literal', 'data': token_data}
+          this.token_specify = 'string literal'
           return
         }
       
-      this.token_specify = { 'type': 'identifier', 'data': token_data };
+      this.token_specify =  'identifier';
     }
   }
   
