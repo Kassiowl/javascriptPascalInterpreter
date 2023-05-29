@@ -25,5 +25,5 @@ class LexicalAnalysis {
   }
 }
 
-let lexical = new LexicalAnalysis("begin writeln('Hello, World!');");
-console.log(lexical.run());
+
+module.exports = LexicalAnalysis;

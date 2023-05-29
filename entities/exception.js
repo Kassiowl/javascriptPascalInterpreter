@@ -1,11 +1,11 @@
 module.exports = class InterpreterException{
 
-    reserved_keyword()
+    static reserved_keyword()
     {
         throw new Error('Reserved Keyword!');
     }
 
-    syntax_error()
+    static syntax_error()
     {
         throw new Error('Syntax error!');
     }
