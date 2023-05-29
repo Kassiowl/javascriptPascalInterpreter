@@ -1,7 +1,8 @@
 const keyword_list = require('./keyword')
 const operators = require('./operators')
-const utilities = require('./utilities')
-const literals = require('./string_literal')
+const comments = require('./comments')
+const delimiters = require('./delimiters')
+
 module.exports = class Token {
     constructor(token_data) {
       this.token_data = token_data;
@@ -20,23 +21,29 @@ module.exports = class Token {
         }
       }
       
-      for(const element of utilities.utilities_static_list)
+      for(const element of comments.comments_static_list)
       {
         if(element === token_data){
-          this.token_specify = {'type': 'utilities', 'data': token_data}
+          this.token_specify = {'type': 'comments', 'data': token_data}
           return
         }
       }
 
-      for(const element of literals.string_literals_static_list)
+      for(const element of delimiters.delimiters_static_list)
       {
-        if(element.includes('"') || element.includes("'")){
+        if(element === token_data){
+          this.token_specify = {'type': 'delimiters', 'data': token_data}
+          return
+        }
+      }
+
+
+      
+        if(token_data.includes('"') || token_data.includes("'") && (token_data[token_data.length - 1] == "'" || token_data[token_data.length -1] == '"')){
           this.token_specify = {'type': 'string literal', 'data': token_data}
           return
         }
-      }
-  
-
+      
       this.token_specify = { 'type': 'identifier', 'data': token_data };
     }
   }
