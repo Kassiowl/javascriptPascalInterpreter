@@ -8,8 +8,7 @@ class LexicalAnalysis {
   separateTokens() {
     const tokenRegex = /(\d+)|\b([a-zA-Z]\w*)\b|([\+\-\*\/\(\)])|('(?:\\.|[^'])*')/g;
     let tokens = this.expression.match(tokenRegex);
-    console.log("tokens__")
-    console.log(tokens)
+  
     return tokens;
   }
   run() {

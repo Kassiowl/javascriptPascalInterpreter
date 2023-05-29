@@ -9,7 +9,8 @@ module.exports = class KeyWords{
             'of', 'packed', 'procedure', 'program',
             'record', 'repeat', 'set', 'then', 'to',
             'type', 'until', 'var', 'while', 'with',
-            'writeln'
+            'writeln',
+            
           ];
           
         return keywords

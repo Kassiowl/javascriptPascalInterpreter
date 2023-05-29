@@ -7,7 +7,6 @@ class SyntaxAnalysis {
     this.tree = undefined;
 
     if (this.tokens[0].token_data != "program") {
-        console.log("entrou aqui")
       exception_list.syntax_error();
     }
   }
@@ -104,7 +103,6 @@ class SyntaxAnalysis {
 
 let lexical = new LexicalAnalysis("program HelloWorld;begin writeln('Hello, World!');end.");
 tokens = lexical.run()
-console.log("tokens ___")
-console.log(tokens)
+
 const syntaxAnalyzer = new SyntaxAnalysis(tokens);
 syntaxAnalyzer.syntax_analysis();
