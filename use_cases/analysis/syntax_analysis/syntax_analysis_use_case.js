@@ -69,6 +69,25 @@ class SyntaxAnalysis {
     }
   
    
+    if (token1.token_specify === "identifier" && token2.token_specify === "keyword"){
+      return true;  
+    } 
+    
+    if (token1.token_data === "begin" && token2.token_specify === "keyword"){
+      return true;  
+    } 
+    
+    if (token1.token_data === "writeln" && token2.token_specify === "delimiters"){
+      return true;  
+    } 
+    if (token1.specify === "delimiters" && token2.token_specify === "string literal"){
+      return true;  
+    } 
+    
+  
+   
+   
+
 
     exception_list.syntax_error();
   }
