@@ -6,6 +6,8 @@ class SyntaxAnalysis {
     this.tokens = tokens;
     this.tree = undefined;
 
+    console.log("TOKEN LIST")
+    console.log(tokens)
     if (this.tokens[0].token_data != "program") {
       exception_list.syntax_error();
     }
@@ -87,6 +89,7 @@ class SyntaxAnalysis {
   }
   
   syntax_analysis() {
+
     for (let i = 0; i < this.tokens.length - 5; i++) {
         const token1 = this.tokens[i];
         const token2 = this.tokens[i + 1];
