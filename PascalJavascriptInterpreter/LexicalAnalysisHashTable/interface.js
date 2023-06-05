@@ -1,4 +1,4 @@
-class token {
+class LexicalAnalysisHashTableInterface {
     constructor(token_list) {
       this.token_list = token_list
     }
