@@ -3,9 +3,8 @@ class token {
       this.token_list = token_list
     }
 
-    buildHashTable(){}
+    buildHashTable(){
+        throw new Error('Build Hash table not implemented!');
 
-    run(){
-        return this.buildHashTable()
     }
   }

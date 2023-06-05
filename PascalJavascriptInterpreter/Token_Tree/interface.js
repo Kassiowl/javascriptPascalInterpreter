@@ -3,9 +3,7 @@ class tokenTreeInterface {
       this.token_list = token_list
     }
 
-    buildTree(){}
-
-    run(){
-        return this.buildTree()
+    buildTree(){
+        throw new Error('Build Tree not implemented!');
     }
   }
