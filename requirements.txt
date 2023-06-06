@@ -1,0 +1,7 @@
+just a way to organize and list the dependencies without package.json, most likely we will not use this to install dependencies,
+as npm just saves in package.json and it's just necessary run "npm install"
+
+
+dependency list
+
+- natural   - With the purpose to separate sentences into a list in lexical anaylsis.
