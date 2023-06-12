@@ -11,8 +11,7 @@ class LexicalAnalysis{
 
     createToken(word){
         const token = new Token(word)
-        const token_mock = {type: "keyword", token_data: word}
-        return token_mock
+        return token
     }
 
     lexical_analysis(sentence){
@@ -24,7 +23,7 @@ class LexicalAnalysis{
             token_list.push(token)
         })
 
-        return token_list // temporary return function, this just return all words in a list, later it will return a list of tokens
+        return token_list 
     }
 
 }
