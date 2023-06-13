@@ -1,6 +1,7 @@
 const Token = require("../Entities/Token/token")
 const natural = require('natural');
 const word_separator = new natural.WordTokenizer();
+const tokenSpecify = require('../Entities/Token_Specify/token_specify');
 
 class LexicalAnalysis{
 
@@ -24,6 +25,38 @@ class LexicalAnalysis{
         })
 
         return token_list 
+    }
+
+    getSpecification(token) {
+        if (tokenSpecify.keywords.includes(token)) {
+            return 'KEYWORD';
+        }
+
+        if (tokenSpecify.operators.includes(token)) {
+            return 'OPERATOR';
+        }
+
+        if (tokenSpecify.punctuation.includes(token)) {
+            return 'PUNCTUATION';
+        }
+
+        if (tokenSpecify.comments.includes(token)) {
+            return 'COMMENT';
+        }
+
+        if (tokenSpecify.numbers.includes(token)) {
+            return 'NUMBER';
+        }
+
+        if (tokenSpecify.stringLiterals.includes(token)) {
+            return 'LITERAL';
+        }
+
+        if (tokenSpecify.directives.includes(token)) {
+            return 'DIRECTIVE';
+        }
+
+        return 'IDENTIFIER';
     }
 
 }

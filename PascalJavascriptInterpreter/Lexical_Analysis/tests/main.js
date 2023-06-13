@@ -2,4 +2,4 @@ const LexicalAnalysis = require("../lexical_analysis")
 
 
 lexical = new LexicalAnalysis()
-console.log(lexical.lexical_analysis("This is a sentence; Varias coisas, varias palavras e tal e ve como vai ser comportar"))
+console.log(lexical.lexical_analysis("if x < 5 then writeln('Hello, World!');"))
