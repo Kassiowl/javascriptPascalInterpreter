@@ -28,40 +28,40 @@ class LexicalAnalysis{
     }
 
     getSpecification(token_data) {
-        if (tokenSpecify.keywords.includes(token_data)) {
-            return 'KEYWORD';
-        }
-
-        if (tokenSpecify.operators.includes(token_data)) {
-            return 'OPERATOR';
-        }
-
-        if (tokenSpecify.punctuation.includes(token_data)) {
-            return 'PUNCTUATION';
-        }
-
-        if (tokenSpecify.comments.includes(token_data)) {
-            return 'COMMENT';
-        }
-
-        for (const regex of tokenSpecify.numbers) {
-            if (regex.test(token_data)) {
-                return 'NUMBER';
+            if (tokenSpecify.keywords.includes(token_data)) {
+                return 'KEYWORD';
             }
-        }
-                
-        for (const regex of tokenSpecify.stringLiterals) {
+
+            if (tokenSpecify.operators.includes(token_data)) {
+                return 'OPERATOR';
+            }
+
+            if (tokenSpecify.punctuation.includes(token_data)) {
+                return 'PUNCTUATION';
+            }
+
+            if (tokenSpecify.comments.includes(token_data)) {
+                return 'COMMENT';
+            }
+
+            for (const regex of tokenSpecify.numbers) {
                 if (regex.test(token_data)) {
-                    return 'LITERAL';
+                    return 'NUMBER';
                 }
             }
+                    
+            for (const regex of tokenSpecify.stringLiterals) {
+                    if (regex.test(token_data)) {
+                        return 'LITERAL';
+                    }
+                }
 
             if (tokenSpecify.directives[0].test(token_data)) {
                 return 'DIRECTIVE';
             }
 
                 return 'IDENTIFIER';
-            }
+        }
 
 }
 
