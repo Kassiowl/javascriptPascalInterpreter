@@ -49,19 +49,19 @@ class LexicalAnalysis{
                 return 'NUMBER';
             }
         }
-        
-for (const regex of tokenSpecify.stringLiterals) {
-        if (regex.test(token_data)) {
-            return 'LITERAL';
-        }
-    }
+                
+        for (const regex of tokenSpecify.stringLiterals) {
+                if (regex.test(token_data)) {
+                    return 'LITERAL';
+                }
+            }
 
-    if (tokenSpecify.directives[0].test(token_data)) {
-        return 'DIRECTIVE';
-    }
+            if (tokenSpecify.directives[0].test(token_data)) {
+                return 'DIRECTIVE';
+            }
 
-        return 'IDENTIFIER';
-    }
+                return 'IDENTIFIER';
+            }
 
 }
 
