@@ -61,9 +61,9 @@ class LexicalAnalysis{
             }
 
                 return 'IDENTIFIER';
-        }
-
     }
+
+}
 
 
 module.exports = LexicalAnalysis;
