@@ -4,7 +4,8 @@ const TokenSpecify = {
       'do', 'nil', 'repeat', 'with', 'as', 'downto', 'not',
       'set', 'xor', 'begin', 'else', 'of', 'then', 'case', 'end',
       'or', 'to', 'const', 'file', 'packed', 'type', 'constructor',
-      'for', 'procedure', 'var', 'destructor', 'function', 'program', 'if'
+      'for', 'procedure', 'var', 'destructor', 'function', 'program', 'if',
+      "integer"
     ],
   
     operators: [
