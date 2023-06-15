@@ -5,13 +5,13 @@ const tokenSpecify = require('../Entities/Token_Specify/token_specify');
 
 class LexicalAnalysis{
 
-    separate_setences_into_words(sentence){
-        const word_list_tokanable = word_separator.tokenize(sentence)
-        return word_list_tokanable
-    }
-
+    separate_setences_into_words(sentence) {
+        const word_list_tokanable = sentence.match(/('[^']*'|"[^"]*")|\b\w+\b/g) || [];
+        return word_list_tokanable;
+      }
     createToken(word){
         const token = new Token(word)
+        token.token_specify = this.getSpecification(token.token_data)
         return token
     }
 
@@ -27,34 +27,38 @@ class LexicalAnalysis{
         return token_list 
     }
 
-    getSpecification(token) {
-        if (tokenSpecify.keywords.includes(token)) {
+    getSpecification(token_data) {
+        if (tokenSpecify.keywords.includes(token_data)) {
             return 'KEYWORD';
         }
 
-        if (tokenSpecify.operators.includes(token)) {
+        if (tokenSpecify.operators.includes(token_data)) {
             return 'OPERATOR';
         }
 
-        if (tokenSpecify.punctuation.includes(token)) {
+        if (tokenSpecify.punctuation.includes(token_data)) {
             return 'PUNCTUATION';
         }
 
-        if (tokenSpecify.comments.includes(token)) {
+        if (tokenSpecify.comments.includes(token_data)) {
             return 'COMMENT';
         }
 
-        if (tokenSpecify.numbers.includes(token)) {
-            return 'NUMBER';
+        for (const regex of tokenSpecify.numbers) {
+            if (regex.test(token_data)) {
+                return 'NUMBER';
+            }
         }
-
-        if (tokenSpecify.stringLiterals.includes(token)) {
+        
+for (const regex of tokenSpecify.stringLiterals) {
+        if (regex.test(token_data)) {
             return 'LITERAL';
         }
+    }
 
-        if (tokenSpecify.directives.includes(token)) {
-            return 'DIRECTIVE';
-        }
+    if (tokenSpecify.directives[0].test(token_data)) {
+        return 'DIRECTIVE';
+    }
 
         return 'IDENTIFIER';
     }
